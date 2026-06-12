@@ -239,6 +239,79 @@ a { color: inherit; text-decoration: none; }
 }
 .product__features strong { color: var(--cream); }
 
+/* ===== PRECIO ===== */
+.price {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 28px;
+  padding: 14px 28px;
+  background: rgba(201, 164, 76, 0.12);
+  border: 1.5px solid rgba(201, 164, 76, 0.4);
+  border-radius: 18px;
+}
+.price__amount {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(3.4rem, 8vw, 5rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--gold-light);
+  text-shadow: 0 4px 18px rgba(201, 164, 76, 0.3);
+}
+.price__meta {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.95rem;
+  color: var(--cream);
+  line-height: 1.2;
+}
+
+/* ===== ENERGÍA ===== */
+.energy {
+  background: linear-gradient(180deg, var(--green-900), var(--green-800));
+  border-top: 1px solid rgba(201, 164, 76, 0.15);
+}
+.energy__inner {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 100px 24px;
+  text-align: center;
+}
+.energy__lead {
+  max-width: 760px;
+  margin: 22px auto 56px;
+  color: var(--cream-soft);
+  font-size: 1.1rem;
+}
+.energy__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  text-align: left;
+}
+.energy__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: var(--green-700);
+  border: 1px solid rgba(201, 164, 76, 0.18);
+  border-radius: var(--radius);
+  padding: 26px 24px;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+.energy__item:hover { transform: translateY(-5px); border-color: var(--gold-light); }
+.energy__icon { font-size: 2rem; line-height: 1; flex-shrink: 0; }
+.energy__item p { color: var(--cream-soft); font-size: 1rem; }
+.energy__item strong { color: var(--cream); }
+
+.nutrition__pack {
+  margin-top: 16px;
+  color: var(--gold-light);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
 /* ===== NOSOTROS ===== */
 .about {
   background: var(--green-800);
@@ -417,5 +490,7 @@ a { color: inherit; text-decoration: none; }
   }
   .product__media { order: -1; }
   .about__grid { grid-template-columns: 1fr; }
+  .energy__grid { grid-template-columns: 1fr; }
   .contact__cards { grid-template-columns: 1fr; }
+  .price { width: 100%; justify-content: center; }
 }
