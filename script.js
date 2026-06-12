@@ -43,6 +43,10 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") closeLogobox();
 });
 
+// Intro: al entrar a la página se muestra el logo en grande.
+// Un pequeño retraso permite pintar el estado cerrado primero, para que anime.
+setTimeout(openLogobox, 80);
+
 // Aparición suave al hacer scroll — a prueba de fallos:
 // si el navegador no soporta IntersectionObserver o algo falla,
 // el contenido permanece SIEMPRE visible (la clase .reveal solo se
