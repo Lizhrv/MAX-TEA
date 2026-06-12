@@ -249,10 +249,14 @@ a { color: inherit; text-decoration: none; }
   color: var(--cream-soft);
 }
 .product__features li::before {
-  content: "🍃";
+  content: "";
   position: absolute;
   left: 0;
-  top: 10px;
+  top: 22px;
+  width: 18px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--gold-light);
 }
 .product__features strong { color: var(--cream); }
 
@@ -473,6 +477,77 @@ a { color: inherit; text-decoration: none; }
 .footer__contact a { color: var(--gold-light); font-weight: 500; }
 .footer__contact a:hover { color: var(--cream); }
 .footer__copy { font-size: 0.85rem; color: rgba(244, 239, 227, 0.45); }
+
+/* ===== VISOR DEL LOGO (lightbox) ===== */
+.nav__brand, .footer__logo { cursor: pointer; }
+
+.logobox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  padding: 24px;
+  background: rgba(11, 26, 16, 0.88);
+  backdrop-filter: blur(16px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+.logobox.open { opacity: 1; visibility: visible; }
+
+.logobox__frame {
+  width: min(80vw, 460px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  background: radial-gradient(circle, var(--green-700), var(--green-900));
+  box-shadow:
+    0 0 0 14px rgba(201, 164, 76, 0.08),
+    0 30px 80px rgba(0, 0, 0, 0.6),
+    0 0 70px rgba(201, 164, 76, 0.28);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transform: scale(0.7) rotate(-6deg);
+  opacity: 0;
+  transition: transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.55s ease;
+}
+.logobox.open .logobox__frame { transform: scale(1) rotate(0); opacity: 1; }
+.logobox__frame img { width: 88%; height: 88%; object-fit: contain; }
+
+.logobox__caption {
+  color: var(--cream);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transform: translateY(14px);
+  opacity: 0;
+  transition: transform 0.5s ease 0.15s, opacity 0.5s ease 0.15s;
+}
+.logobox.open .logobox__caption { transform: none; opacity: 1; }
+
+.logobox__close {
+  position: absolute;
+  top: 22px;
+  right: 28px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(244, 239, 227, 0.08);
+  border: 1px solid rgba(201, 164, 76, 0.4);
+  color: var(--cream);
+  font-size: 1.9rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.3s ease;
+}
+.logobox__close:hover { background: rgba(201, 164, 76, 0.22); transform: rotate(90deg); }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 880px) {

@@ -16,6 +16,33 @@ links.querySelectorAll("a").forEach((a) => {
   a.addEventListener("click", () => links.classList.remove("open"));
 });
 
+// Visor del logo: al hacer clic en el logo (menú o footer) se abre completo
+const logobox = document.getElementById("logobox");
+const logoboxClose = document.getElementById("logoboxClose");
+
+function openLogobox(e) {
+  if (e) e.preventDefault();
+  logobox.classList.add("open");
+  logobox.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+}
+function closeLogobox() {
+  logobox.classList.remove("open");
+  logobox.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+}
+
+document.querySelectorAll(".nav__brand, .footer__logo").forEach((el) => {
+  el.addEventListener("click", openLogobox);
+});
+logoboxClose.addEventListener("click", closeLogobox);
+logobox.addEventListener("click", (e) => {
+  if (e.target === logobox) closeLogobox();
+});
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeLogobox();
+});
+
 // Aparición suave al hacer scroll — a prueba de fallos:
 // si el navegador no soporta IntersectionObserver o algo falla,
 // el contenido permanece SIEMPRE visible (la clase .reveal solo se
