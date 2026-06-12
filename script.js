@@ -16,25 +16,33 @@ links.querySelectorAll("a").forEach((a) => {
   a.addEventListener("click", () => links.classList.remove("open"));
 });
 
-// Aparición suave de secciones al hacer scroll
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = "1";
-        entry.target.style.transform = "translateY(0)";
-        observer.unobserve(entry.target);
-      }
-    });
-  },
-  { threshold: 0.12 }
+// Aparición suave al hacer scroll — a prueba de fallos:
+// si el navegador no soporta IntersectionObserver o algo falla,
+// el contenido permanece SIEMPRE visible (la clase .reveal solo se
+// agrega cuando el observer está activo).
+const revealEls = document.querySelectorAll(
+  ".product, .about__card, .nutrition__info, .nutrition__ingredients, .contact__card"
 );
 
-document
-  .querySelectorAll(".product, .about__card, .nutrition__info, .nutrition__ingredients, .contact__card")
-  .forEach((el) => {
-    el.style.opacity = "0";
-    el.style.transform = "translateY(30px)";
-    el.style.transition = "opacity 0.7s ease, transform 0.7s ease";
-    observer.observe(el);
-  });
+if ("IntersectionObserver" in window && revealEls.length) {
+  revealEls.forEach((el) => el.classList.add("reveal"));
+
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("revealed");
+          obs.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.08 }
+  );
+
+  revealEls.forEach((el) => observer.observe(el));
+
+  // Red de seguridad: revelar todo después de 2s por si el observer falla
+  setTimeout(() => {
+    revealEls.forEach((el) => el.classList.add("revealed"));
+  }, 2000);
+}
