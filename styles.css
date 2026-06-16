@@ -378,6 +378,47 @@ a { color: inherit; text-decoration: none; }
 }
 .about__card p { color: var(--cream-soft); font-size: 0.98rem; }
 
+/* ===== GALERÍA ===== */
+.gallery {
+  background: var(--green-800);
+  border-top: 1px solid rgba(201, 164, 76, 0.15);
+  border-bottom: 1px solid rgba(201, 164, 76, 0.15);
+}
+.gallery__inner {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 100px 24px;
+  text-align: center;
+}
+.gallery__lead {
+  color: var(--cream-soft);
+  max-width: 600px;
+  margin: 20px auto 50px;
+  font-size: 1.1rem;
+}
+.gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  max-width: 720px;
+  margin: 0 auto 44px;
+}
+.gallery__item {
+  margin: 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid rgba(201, 164, 76, 0.2);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+.gallery__item:hover { transform: translateY(-6px); border-color: var(--gold-light); }
+.gallery__item img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+}
+
 /* ===== NUTRICIÓN ===== */
 .nutrition {
   max-width: var(--maxw);
@@ -585,6 +626,7 @@ a { color: inherit; text-decoration: none; }
   .product__media { order: -1; }
   .about__grid { grid-template-columns: 1fr; }
   .energy__grid { grid-template-columns: 1fr; }
+  .gallery__grid { grid-template-columns: 1fr; max-width: 380px; }
   .contact__cards { grid-template-columns: 1fr; }
   .price { width: 100%; justify-content: center; }
 }
